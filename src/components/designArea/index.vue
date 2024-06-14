@@ -1,9 +1,16 @@
-<script setup>
+<script>
+  export default {
+    methods: {
+      onDragEnter: () => {
+        console.log('进入设计区域了……')
+      }
+    }
+  }
 
 </script>
 
 <template>
-  <div class="design-area">
+  <div @dragenter="onDragEnter" class="design-area">
     <h1>设计区域</h1>
   </div>
 </template>
