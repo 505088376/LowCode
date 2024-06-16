@@ -1,17 +1,37 @@
 <script>
+  import uiCompoents from "@/components/uiCompoents";
+  import Constant from "@/Constant";
+
   export default {
-    methods: {
-      onDragEnter: () => {
-        console.log('进入设计区域了……')
+    computed: {
+      Constant() {
+        return Constant
       }
+    },
+    data() {
+      return {
+        components: [],
+      }
+    },
+    components: {
+      ...uiCompoents
+    },
+    methods: {
+    },
+    mounted() {
+      this.components = this.$store.state.Page.page.components.map(component => component.compName)
     }
   }
-
 </script>
 
 <template>
-  <div @dragenter="onDragEnter" class="design-area">
+  <div
+    :id="Constant.DESIGN_AREA_ID"
+    class="design-area"
+    ref="designArea"
+  >
     <h1>设计区域</h1>
+    <li v-for="comp in components" :is="comp" :key="comp"></li>
   </div>
 </template>
 
